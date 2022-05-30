@@ -6,6 +6,27 @@
   border-bottom: 2px solid black !important;
 }
 
+.serviceImg {
+  width: 110px !important;
+  height: 110px !important;
+}
+
+.alice-carousel__prev-btn {
+  display: none;
+  font-size: 0;
+}
+
+.alice-carousel__next-btn {
+  display: none;
+  font-size: 0;
+}
+
+.thumbnail {
+  width: 300px !important;
+  height: 185px;
+  cursor: grab;
+}
+
 
 
 

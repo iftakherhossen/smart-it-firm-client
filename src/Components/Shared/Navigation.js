@@ -26,14 +26,13 @@ const ResponsiveAppBar = () => {
      };
 
      return (
-          <AppBar position="static" sx={{ bgcolor: 'transparent', boxShadow: 0 }}>
+          <AppBar position="fixed" sx={{ bgcolor: '#FBD062', boxShadow: 0 }}>
                <Container maxWidth="xl">
                     <Toolbar disableGutters>
                          <Avatar src="./logo192.png" alt="logo" sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
                          <Typography
                               variant="h5"
                               noWrap
-                              component="a"
                               sx={{
                                    mr: 2,
                                    display: { xs: "none", md: "flex" },
@@ -108,7 +107,6 @@ const ResponsiveAppBar = () => {
                          <Typography
                               variant="h5"
                               noWrap
-                              component="a"
                               sx={{
                                    mr: 2,
                                    display: { xs: "flex", md: "none" },

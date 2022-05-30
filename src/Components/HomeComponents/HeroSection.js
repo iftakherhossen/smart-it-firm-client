@@ -8,7 +8,7 @@ import React from 'react';
 const HeroSection = () => {
      return (
           <Container>
-               <Grid container columns={{ xs: 4, sm: 8, md: 12 }} sx={{ py: 20, display: 'flex', alignItems: 'center' }}>
+               <Grid container columns={{ xs: 4, sm: 8, md: 12 }} sx={{ py: 20, display: 'flex', alignItems: 'center', mt: 8 }}>
                     <Grid item xs={12} sm={12} md={6} sx={{ padding: { xs: 3, md: '0 3rem 0 0' }, textAlign: 'left' }}>
                          <Box>
                               <Typography variant="h4" sx={{ fontWeight: 'bold', fontFamily: 'Macondo, cursive', fontSize: 35 }}>
