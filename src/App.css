@@ -1,0 +1,18 @@
+.navBtn {
+  border-bottom: 2px solid transparent !important;
+}
+
+.navBtn:hover {
+  border-bottom: 2px solid black !important;
+}
+
+
+
+
+/* Responsive CSS */
+@media only screen and (max-width: 600px) {
+  .heroImg {
+    width: 40vh !important;
+    height: 100% !important;
+  }
+}
