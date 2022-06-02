@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
 
+html {
+  scroll-behavior: smooth !important;
+  transition: 1s all ease !important;
+}
+
 body {
   margin: 0;
   font-family: 'Macondo', cursive !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  user-select: none !important;
 }
 
 code {

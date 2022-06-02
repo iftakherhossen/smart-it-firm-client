@@ -6,6 +6,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { Box } from '@mui/system';
 import { Divider, Typography } from '@mui/material';
+import ScrollToTop from "react-scroll-to-top";
 
 const Footer = () => {
     return (
@@ -21,6 +22,8 @@ const Footer = () => {
                 <Divider sx={{ mb: 2 }} />
                 <Typography variant="subtitle1" sx={{ color: '#6A6C6D', fontFamily: 'Macondo, cursive' }}>© Smart IT Firm 2022, Iftakher Hossen, a Programming Hero initiative.</Typography>
             </Box>
+
+            <ScrollToTop smooth color="white" style={{ backgroundColor: '#252930', border: 0, width: 45, height: 45, right: 100, bottom: 25, borderRadius: '50%' }} />
         </div>
     );
 };

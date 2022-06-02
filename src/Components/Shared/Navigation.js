@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from "@mui/system";
 import { Link } from 'react-router-dom';
 import useAuth from "../../hooks/useAuth";
+import { HashLink } from 'react-router-hash-link';
 
 const ResponsiveAppBar = () => {
      const { user } = useAuth();
@@ -83,18 +84,18 @@ const ResponsiveAppBar = () => {
                                         </Link>  
                                    </MenuItem>
                                    <MenuItem>
-                                        <Link to="/home#projects" style={{ color: 'black', textDecoration: 'none' }}>
+                                        <HashLink to="/home#projects" style={{ color: 'black', textDecoration: 'none' }}>
                                              <Typography sx={{ px: 2, color: "black", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }}>
                                                   Projects
                                              </Typography>
-                                        </Link> 
+                                        </HashLink> 
                                    </MenuItem>
                                    <MenuItem>
-                                        <Link to="/home#team" style={{ color: 'black', textDecoration: 'none' }}>
+                                        <HashLink to="/home#team" style={{ color: 'black', textDecoration: 'none' }}>
                                              <Typography sx={{ px: 2, color: "black", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }}>
                                                   Team
                                              </Typography>
-                                        </Link> 
+                                        </HashLink> 
                                    </MenuItem>
                                    <MenuItem>
                                         <Typography sx={{ px: 2, color: "black", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }}>
@@ -125,16 +126,16 @@ const ResponsiveAppBar = () => {
                                         Home
                                    </Button>
                               </Link>                         
-                              <Link to="/home#projects" style={{ color: 'black', textDecoration: 'none' }}>
+                              <HashLink to="/home#projects" style={{ color: 'black', textDecoration: 'none' }}>
                                    <Button sx={{ my: 2, mx: 1, color: "black", display: "block", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }} className="navBtn">
                                         Projects
                                    </Button>
-                              </Link>
-                              <Link to="/home#team" style={{ color: 'black', textDecoration: 'none' }}>
+                              </HashLink>
+                              <HashLink to="/home#team" style={{ color: 'black', textDecoration: 'none' }}>
                                    <Button sx={{ my: 2, color: "black", display: "block", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }} className="navBtn">
                                         Team
                                    </Button>
-                              </Link>
+                              </HashLink>
                               <Button sx={{ my: 2, mx: 1, color: "black", display: "block", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }} className="navBtn">
                                    Contact
                               </Button>
@@ -178,7 +179,7 @@ const ResponsiveAppBar = () => {
                                    </Menu>
                               </Box> : <Box>
                                    <Link to="/login" style={{ color: 'black', textDecoration: 'none' }}>
-                                        <Button sx={{ my: 2, px: 3, pb: 0.4, color: "white", bgcolor: "#111430", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }} className="navBtn">
+                                        <Button sx={{ my: 2, px: 3, pb: 0.4, color: "white", bgcolor: "#111430", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 17 }} className="loginBtn">
                                              Login
                                         </Button>
                                    </Link>

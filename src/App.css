@@ -25,9 +25,24 @@
   width: 300px !important;
   height: 185px;
   cursor: grab;
+  display: flex !important;
+  justify-content: center !important;
 }
 
+.member {
+  height: 12 50px;
+  width: 150px;
+  cursor: grab;
+}
 
+.loginBtn:hover {
+  background-color: #252930 !important;
+  color: white !important;
+}
+
+.kdCslO {
+  display: none !important;
+}
 
 
 /* Responsive CSS */
@@ -35,5 +50,20 @@
   .heroImg {
     width: 40vh !important;
     height: 100% !important;
+  }
+
+  .thumbnail {
+    width: 100% !important;
+  }
+
+  .alice-carousel__stage-item {
+    display: inline-flex !important;
+    justify-content: center !important;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .reviewWrapper {
+    padding: 0 240px !important;
   }
 }
