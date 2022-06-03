@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider, updateProfile } from "firebase/auth";
 import initializeAuthentication from '../Components/Firebase/firebase.init';
+import Swal from 'sweetalert2';
 
 // initialize firebase app
 initializeAuthentication();
@@ -9,6 +10,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
+    const [success, setSuccess] = useState(false);
     const [admin, setAdmin] = useState(false);
 
     const auth = getAuth();
@@ -36,39 +38,79 @@ const useFirebase = () => {
                 navigate('/');
             })
             .catch((error) => {
-                setAuthError(error.message)
+                setAuthError(error.message);
+                authError && Swal.fire(
+                    'Something went wrong!',
+                    `Please try again.`,
+                    'error'
+                );
             })
-            .finally(() => setIsLoading(false));
+            .finally(() => {
+                setIsLoading(false);
+                setSuccess(true);
+                success && Swal.fire(
+                    'Registration Successfully!',
+                    `Welcome, <b>${user?.displayName ? user?.displayName : 'User' }</b>`,
+                    'success'
+                );
+            });
     }
 
-    const loginUser = (email, password, navigate) => {
+    const loginUser = (email, password, location, navigate) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                const destination = location?.state?.from || '/';
+                navigate(destination)
                 setAuthError('');
-                navigate('/');
             })
             .catch((error) => {
                 setAuthError(error.message);
-                navigate('/');
+                authError && Swal.fire(
+                    'Something went wrong!',
+                    `Please try again.`,
+                    'error'
+                );
             })
-            .finally(() => setIsLoading(false));
+            .finally(() => {
+                setIsLoading(false);
+                setSuccess(true);
+                success && Swal.fire(
+                    'Login Successfully!',
+                    `Welcome, <b>${user?.displayName ? user?.displayName : 'User' }</b>`,
+                    'success'
+                );
+            });
     }
 
     // google sign in
-    const signInWithGoogle = (navigate) => {
+    const signInWithGoogle = (location, navigate) => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
-                saveUser(user.email, user.displayName, 'PUT')
-                setAuthError('');;
+                saveUser(user.email, user.displayName, user.photoURL, 'PUT')
                 setAuthError('');
-                navigate('/');
             })
             .catch((error) => {
                 setAuthError(error.message);
+                console.log(error);
+                authError && Swal.fire(
+                    'Something went wrong!',
+                    `Please try again.`,
+                    'error'
+                );
             })
-            .finally(() => setIsLoading(false));
+            .finally(() => {
+                setIsLoading(false);
+                setSuccess(true);
+                success && Swal.fire(
+                    'Login Successfully!',
+                    `Welcome, <b>${user?.displayName ? user?.displayName : 'User' }</b>`,
+                    'success'
+                );
+                const destination = location?.state?.from || '/';
+                navigate(destination);
+            });
     }
 
     //observe user state
@@ -83,25 +125,35 @@ const useFirebase = () => {
             setIsLoading(false);
         });
         return () => unsubscribe
-    }, [auth])
+    }, [auth]);
 
+    // for checking admin
     useEffect(() => {
         fetch(`https://smart-it-firm.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin));
-    }, [user.email])
+    }, [user.email]);
 
     const logOut = () => {
         signOut(auth)
             .then(() => { })
             .catch((error) => { })
-            .finally(() => setIsLoading(false));
+            .finally(() => { 
+                setIsLoading(false);
+                setSuccess(true);
+                success && Swal.fire(
+                    'Logout Successfully!',
+                    `See you again, <b>${user?.displayName }</b>`,
+                    'success'
+                );
+            });
     }
 
-    const saveUser = (email, displayName, method) => {
-        const user = { email, displayName };
+    const saveUser = (email, displayName, userImg, method) => {
+        const user = { email, displayName, userImg };
+
         fetch('https://smart-it-firm.herokuapp.com/users', {
-            method: method,
+            method: "PUT",
             headers: {
                 'content-type': 'application/json'
             },

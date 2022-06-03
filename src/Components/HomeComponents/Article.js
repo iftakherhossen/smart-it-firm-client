@@ -1,4 +1,4 @@
-import { Backdrop, Card, CardActions, CardContent, CardHeader, CardMedia, Chip, Grid, IconButton, Modal, Stack, Typography } from '@mui/material';
+import { Backdrop, Card, CardActions, CardContent, CardMedia, Chip, Grid, IconButton, Modal, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -30,7 +30,6 @@ const style = {
 const Article = ({ article }) => {
      const { title, description, public_reactions_count, url, social_image, tag_list, created_at, comments_count } = article;
      const account = ['@iftakher_hossen'];
-     const [success, setSuccess] = useState(false);
      const [open, setOpen] = useState(false);
 
      const handleOpen = () => setOpen(true);
@@ -45,14 +44,6 @@ const Article = ({ article }) => {
                },
           })
      }
-
-     success && toast.success('Shared Successfully!', {
-          style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-          },
-     })
 
      return (
           <>

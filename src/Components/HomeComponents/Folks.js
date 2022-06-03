@@ -11,7 +11,9 @@ const OurTeam = () => {
                          <Typography variant="h3" component="h1" sx={{ fontWeight: 'bold', fontFamily: 'Macondo, cursive', color: 'black', mt: 5 }}>Our Dedicated Team</Typography>
                     </Box>
                     <Box sx={{ mt: 5, mb: 6 }}>
-                         <Folk />
+                         <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                              <Folk />
+                         </div>
                     </Box>
                </Container>
           </div>

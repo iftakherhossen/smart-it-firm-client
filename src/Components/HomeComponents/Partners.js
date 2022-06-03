@@ -4,7 +4,7 @@ import React from 'react';
 
 const Partners = () => {
      return (
-          <Box>
+          <div data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
                <Container>
                     <Box sx={{ textAlign: 'center', pt: 8 }}>
                          <Typography variant="h3" component="h1" sx={{ fontWeight: 'bold', fontFamily: 'Macondo, cursive', color: 'black' }}>Trusted By</Typography>
@@ -17,7 +17,7 @@ const Partners = () => {
                          <img src="https://i.ibb.co/Gn7cvM7/uber.png" alt="Brands" style={{ width: 150, margin: '3rem 2rem 0' }} draggable="false" />
                     </Box>
                </Container>
-          </Box>
+          </div>
      );
 };
 

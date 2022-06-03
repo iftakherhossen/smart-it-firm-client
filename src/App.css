@@ -21,18 +21,23 @@
   font-size: 0;
 }
 
+.thumbnailWrapper {
+  display: flex !important;
+  justify-content: center !important;
+}
+
 .thumbnail {
   width: 300px !important;
   height: 185px;
   cursor: grab;
-  display: flex !important;
-  justify-content: center !important;
+  padding: 0 40px !important;
 }
 
 .member {
   height: 12 50px;
   width: 150px;
   cursor: grab;
+  color: #282c34fb;
 }
 
 .loginBtn:hover {
@@ -42,6 +47,10 @@
 
 .kdCslO {
   display: none !important;
+}
+
+.hoverWhite:hover {
+  color: white !important;
 }
 
 

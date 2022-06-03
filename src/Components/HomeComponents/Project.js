@@ -36,6 +36,7 @@ const Project = () => {
             items={items}
             responsive={responsive}
             infinite
+            className="thumbnailWrapper"
         />
     );
 };

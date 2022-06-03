@@ -14,6 +14,7 @@ const Service = ({ service }) => {
                               image={image}
                               alt={name}
                               className="serviceImg"
+                              draggable="false"
                          />
                     </Box>
                     <CardContent sx={{ textAlign: 'center', mb: 1.5 }}>

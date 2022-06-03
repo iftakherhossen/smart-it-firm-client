@@ -10,9 +10,9 @@ const Projects = () => {
                 <Box sx={{ textAlign: 'center', pt: 8, pb: 6 }}>
                     <Typography variant="h3" component="h1" sx={{ fontWeight: 'bold', fontFamily: 'Macondo, cursive', color: 'white' }}>Our Projects</Typography>
                 </Box>
-                <Box>
+                <div data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
                     <Project />
-                </Box>
+                </div>
             </Container>
         </div>
     );
