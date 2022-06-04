@@ -1,28 +1,23 @@
 import { Tooltip } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 
 const Project = () => {
+    const [projects, setProjects] = useState([]);
     const handleDragStart = (e) => e.preventDefault();
 
-    const items = [
-        <Tooltip title="Our Best Projects" arrow followCursor>
-            <img src="https://i.ibb.co/rFb6sMx/carousel-1.png" onDragStart={handleDragStart} role="presentation" alt="thumbnail" className="thumbnail" />
-        </Tooltip>,
-        <Tooltip title="Our Best Projects" arrow followCursor>
-            <img src="https://i.ibb.co/6FthxdG/carousel-2.png" onDragStart={handleDragStart} role="presentation" alt="thumbnail" className="thumbnail"  />
-        </Tooltip>,
-        <Tooltip title="Our Best Projects" arrow followCursor>
-            <img src="https://i.ibb.co/jLTPpc4/carousel-3.png" onDragStart={handleDragStart} role="presentation" alt="thumbnail" className="thumbnail" />
-        </Tooltip>,
-        <Tooltip title="Our Best Projects" arrow followCursor>
-            <img src="https://i.ibb.co/X8PFk7P/carousel-4.png" onDragStart={handleDragStart} role="presentation" alt="thumbnail" className="thumbnail" />
-        </Tooltip>,
-        <Tooltip title="Our Best Projects" arrow followCursor>
-            <img src="https://i.ibb.co/8K0hSpn/carousel-5.png" onDragStart={handleDragStart} role="presentation" alt="thumbnail" className="thumbnail" />
+    useEffect(() => {
+        fetch('https://smart-it-firm.herokuapp.com/projects')
+            .then(res => res.json())
+            .then(data => setProjects(data));
+    }, []);
+
+    const items = projects.map(({ _id, title, image }) => 
+        <Tooltip title={title} arrow followCursor>
+            <img src={image} onDragStart={handleDragStart} role="presentation" alt="thumbnail" className="thumbnail" key={_id} style={{ padding: '0 40px' }} />
         </Tooltip>
-    ];
+    );
 
     const responsive = {
         0: { items: 1 },

@@ -30,7 +30,6 @@
   width: 300px !important;
   height: 185px;
   cursor: grab;
-  padding: 0 40px !important;
 }
 
 .member {
@@ -52,6 +51,9 @@
 .hoverWhite:hover {
   color: white !important;
 }
+
+
+
 
 
 /* Responsive CSS */

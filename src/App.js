@@ -10,6 +10,12 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
+import BookedServices from "./Components/DashboardComponents/BookedServices";
+import ManageServices from "./Components/DashboardComponents/ManageServices";
+import ManageReviews from "./Components/DashboardComponents/ManageReviews";
+import ManageTeam from "./Components/DashboardComponents/ManageTeam";
+import ManageProjects from "./Components/DashboardComponents/ManageProjects";
+import ManageClients from "./Components/DashboardComponents/ManageClients";
 
 function App() {
   AOS.init({
@@ -45,12 +51,15 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
-              {/* <Route index element={<DashboardHome />} />
-              <Route path="services" element={<ServiceLists />} />
-              <Route path="postReviews" element={<PostReviews />} />
-              <Route path="makeAdmin" element={<AdminRoute><MakeAdmin /></AdminRoute>} />
-              <Route path="addService" element={<AdminRoute><AddService /></AdminRoute>} />
-              <Route path="manageOrders" element={<AdminRoute><ManageOrders /></AdminRoute>} /> */}
+              <Route index element={<BookedServices />} />
+              {/* normal user interface */}
+
+              {/* order */}
+              <Route path="manage-services" element={<AdminRoute><ManageServices /></AdminRoute>} />
+              <Route path="manage-projects" element={<AdminRoute><ManageProjects /></AdminRoute>} />
+              <Route path="manage-clients" element={<AdminRoute><ManageClients /></AdminRoute>} />
+              <Route path="manage-team" element={<AdminRoute><ManageTeam /></AdminRoute>} />
+              <Route path="manage-reviews" element={<AdminRoute><ManageReviews /></AdminRoute>} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

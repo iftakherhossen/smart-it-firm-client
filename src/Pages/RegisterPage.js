@@ -10,9 +10,8 @@ const RegisterPage = () => {
      const handleClose = () => {
           setOpen(false);
      };
-     const handleToggle = () => {
-          isLoading && setOpen(!open);
-     };
+     const handleToggle = () => isLoading && setOpen(!open);
+
 
      return (
           <div>

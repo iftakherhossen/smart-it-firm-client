@@ -1,22 +1,18 @@
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Folk = () => {
-     const handleDragStart = (e) => e.preventDefault();
-    
-     const items = [
-          <img src="https://i.ibb.co/5KYzqJw/male-1.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/tZNM8B0/female-1.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/hfhBPGR/male-8.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/TLBJxLL/male-6.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/9sL4Xd9/male-7.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/5L5Jphq/male-10.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/M2ckq0b/female-4.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/M5Q3SZT/male-16.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/KKPJrFB/male-3.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />,
-          <img src="https://i.ibb.co/P54sXnQ/male-14.png" onDragStart={handleDragStart} role="presentation" alt="member" className="member" />
-     ];
+     const [team, setTeam] = useState([]);
+     const handleDragStart = (e) => e.preventDefault();     
+
+     useEffect(() => {
+          fetch('https://smart-it-firm.herokuapp.com/team')
+               .then(res => res.json())
+               .then(data => setTeam(data));
+     }, []);
+
+     const items = team.map(({ _id, image }) => <img src={image} onDragStart={handleDragStart} role="presentation" alt="member" draggable="false" className="member" key={_id} />);
 
      const responsive = {
           0: { items: 1 },

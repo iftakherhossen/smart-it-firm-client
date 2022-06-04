@@ -30,8 +30,6 @@ const ResponsiveAppBar = () => {
      const handleContactModalOpen = () => setOpenContact(true);
      const handleContactModalClose = () => setOpenContact(false);
 
-     console.log(user);
-
      return (
           <AppBar position="fixed" sx={{ bgcolor: '#FBD062', boxShadow: 0 }}>
                <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">               

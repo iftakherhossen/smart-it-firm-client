@@ -14,13 +14,12 @@ import useAuth from '../hooks/useAuth';
 const Home = () => {
      const { isLoading } = useAuth();
      const [open, setOpen] = React.useState(false);
+
      const handleClose = () => {
           setOpen(false);
      };
-     const handleToggle = () => {
-          isLoading && setOpen(!open);
-     };
-
+     const handleToggle = () => isLoading && setOpen(!open);
+     
      return (
           <div>
                {

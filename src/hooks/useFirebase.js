@@ -108,7 +108,7 @@ const useFirebase = () => {
                     `Welcome, <b>${user?.displayName ? user?.displayName : 'User' }</b>`,
                     'success'
                 );
-                const destination = location?.state?.from || '/';
+                const destination = location.state.from || '/';
                 navigate(destination);
             });
     }
