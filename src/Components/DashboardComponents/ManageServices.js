@@ -89,15 +89,17 @@ const ManageServices = () => {
                               msdFont={msdFont}
                          />)
                     }
-                    <Grid item xs={12} sm={6} md={4}>
-                         <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '100%', mx: { xs: 1, md: 0 } }}>
-                              <Tooltip title="Add New Service">
-                                   <IconButton aria-label="Add More Services" onClick={handleOpen} sx={{ boxShadow: 3 }}>
-                                        <AddIcon sx={{ fontSize: 45 }} />
-                                   </IconButton>
-                              </Tooltip>
-                         </Card>
-                    </Grid>
+                    {
+                         msdFont && <Grid item xs={12} sm={6} md={4}>
+                              <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '100%', mx: { xs: 1, md: 0 } }}>
+                                   <Tooltip title="Add New Service">
+                                        <IconButton aria-label="Add More Services" onClick={handleOpen} sx={{ boxShadow: 3 }}>
+                                             <AddIcon sx={{ fontSize: 45 }} />
+                                        </IconButton>
+                                   </Tooltip>
+                              </Card>
+                         </Grid>
+                    }
                </Grid>
 
 

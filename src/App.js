@@ -16,6 +16,8 @@ import ManageReviews from "./Components/DashboardComponents/ManageReviews";
 import ManageTeam from "./Components/DashboardComponents/ManageTeam";
 import ManageProjects from "./Components/DashboardComponents/ManageProjects";
 import ManageClients from "./Components/DashboardComponents/ManageClients";
+import ManageOrders from "./Components/DashboardComponents/ManageOrders";
+import Payment from "./Components/DashboardComponents/Payment";
 
 function App() {
   AOS.init({
@@ -52,9 +54,8 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
               <Route index element={<BookedServices />} />
-              {/* normal user interface */}
-
-              {/* order */}
+              <Route path="payment" element={<Payment />} />
+              <Route path="manage-orders" element={<AdminRoute><ManageOrders /></AdminRoute>} />
               <Route path="manage-services" element={<AdminRoute><ManageServices /></AdminRoute>} />
               <Route path="manage-projects" element={<AdminRoute><ManageProjects /></AdminRoute>} />
               <Route path="manage-clients" element={<AdminRoute><ManageClients /></AdminRoute>} />

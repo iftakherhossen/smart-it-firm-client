@@ -4,12 +4,12 @@ import React from 'react';
 import ReactStars from 'react-stars';
 
 const Review = ({ comment }) => {
-     const { name, designation, review, ratings, userImg, hidden } = comment;
+     const { name, designation, feedback, ratings, userImg, hidden } = comment;
 
      return (
-          <Grid item xs={12} sx={{ p: { xs: 0, md: 1.5 } }}> 
+          <Grid item xs={12} sx={{ p: { xs: 0, md: 1.5 }, display: hidden ? 'none' : 'block' }}> 
                {
-                    hidden === false && <Card sx={{ display: 'flex', borderRadius: 5, bgcolor: '#DEDEDE', p: 1, mx: 'auto' }}>
+                    <Card sx={{ display: 'flex', borderRadius: 5, bgcolor: '#DEDEDE', p: 1, mx: 'auto' }}>
                          <CardContent sx={{ width: { xs: 1, md: '75%' }, wordWrap: 'wrap', mr: 1.5, textAlign: { xs: 'center', md: 'left' } }}>
                               <Typography component="div" variant="h5" sx={{ fontFamily: 'Macondo, cursive', fontWeight: 'bold' }}>
                                    {name}
@@ -18,14 +18,14 @@ const Review = ({ comment }) => {
                                    {designation}
                               </Typography>                         
                               <Typography variant="body1" component="div" sx={{ fontFamily: 'Macondo, cursive', fontSize: 17 }}>
-                                   <strong><q>{review}</q></strong>
+                                   <strong><q>{feedback}</q></strong>
                               </Typography>
                               <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                                    <ReactStars
                                         count={5}
                                         value={ratings}
                                         size={28}
-                                        color1={'#eee'}
+                                        color1={'#aaa'}
                                         color2={'#111430'}
                                         edit={false}
                                         half={true}

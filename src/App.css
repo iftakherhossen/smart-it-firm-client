@@ -52,6 +52,11 @@
   color: white !important;
 }
 
+.disabledNav:disabled {
+  cursor: not-allowed;
+  color: #aaa !important;
+}
+
 
 
 

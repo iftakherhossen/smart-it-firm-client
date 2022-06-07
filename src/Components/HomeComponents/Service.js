@@ -62,9 +62,11 @@ const Service = ({ service, msdFont }) => {
                          <Typography variant="body2" sx={{ fontFamily: 'Macondo, cursive', fontSize: msdFont && '1em' }}>
                               {description}
                          </Typography>
-                         <IconButton aria-label="Visible" onClick={() => handleVisible(_id)} sx={{ mt: 3 }}>
-                              {available ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                         </IconButton>
+                         {
+                              msdFont && <IconButton aria-label="Visible" onClick={() => handleVisible(_id)} sx={{ mt: 3 }}>
+                                   {available ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                              </IconButton>
+                         }
                     </CardContent>
                </Card>               
           </Grid>

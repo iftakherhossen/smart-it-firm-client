@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import GoogleButton from 'react-google-button';
 import useAuth from '../../hooks/useAuth';
 import GoBack from '@mui/icons-material/KeyboardBackspace';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [registrationData, setRegistrationData] = useState({});
@@ -24,6 +25,7 @@ const Register = () => {
         newRegistrationData[field] = value;
         setRegistrationData(newRegistrationData);
     }
+    
     const handleRegister = e => {
         if (registrationData.password !== registrationData.retypePassword) {
             Swal.fire(
@@ -50,9 +52,11 @@ const Register = () => {
                         <Grid container sx={{ maxWidth: '60%', bgcolor: '#eee', boxShadow: 5, borderRadius: 5 }}>
                             <Grid item xs={12} md={6} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                                 <Tooltip title="Go Back">
-                                    <Fab aria-label="go back" sx={{ bottom: 0 }}>
-                                        <GoBack />
-                                    </Fab>
+                                    <Link to="/">
+                                        <Fab aria-label="go back" sx={{ bottom: 0 }}>
+                                            <GoBack />
+                                        </Fab>
+                                    </Link>
                                 </Tooltip>
                                 <Box sx={{ my: 'auto' }}>
                                     <img src="https://i.ibb.co/7Nh1BfQ/signin-image-removebg-preview.png" alt="SignUp" draggable="false" style={{ width: '100%', margin: '35px 0' }} />
@@ -61,7 +65,7 @@ const Register = () => {
                             <Grid item xs={12} md={6} sx={{ my: 5, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                 <Toolbar />
                                 <Box>
-                                    <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                                    <Box sx={{display: 'flex', justifyContent: 'center', maxWidth: '70%' }}>
                                         <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2, fontFamily: 'Macondo, cursive' }}>Sign in</Typography>
                                     </Box>
 
@@ -82,6 +86,15 @@ const Register = () => {
                                                 required
                                                 name="email"
                                                 type="email"
+                                                onBlur={handleOnBlur}
+                                                sx={{ width: 1, mb: 1, color: 'white' }}
+                                            />
+                                            <TextField 
+                                                variant='standard'
+                                                label='Designation'
+                                                required
+                                                type="text"
+                                                name="designation"
                                                 onBlur={handleOnBlur}
                                                 sx={{ width: 1, mb: 1, color: 'white' }}
                                             />

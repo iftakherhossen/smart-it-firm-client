@@ -40,6 +40,7 @@ h1 {
      margin-top: -12rem;
      margin-bottom: 1rem;
      letter-spacing: 1rem;
+     text-align: center;
      transform: translate3d(0, 0, 0vmin);
      --x: calc(50% + (var(--swing-x) * 0.5) * 1%);
      background: radial-gradient(var(--lit-header), var(--header) 45%) var(--x) 100%/200% 200%;
@@ -49,11 +50,12 @@ h1 {
 }
 
 h2 {
-     font-size: 1.8em;
+     font-size: 2.5em !important;
 }
 
 .h2 {
      margin-top: -40px !important;
+     text-align: center;
      z-index: 1;
 }
 

@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { Container } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
      return (
@@ -17,7 +18,11 @@ const HeroSection = () => {
                               <Typography variant="body1" sx={{ fontWeight: 600, my: 3, fontFamily: 'Macondo, cursive', fontSize: 17 }}>
                                    We are here to help you to grow you business online. In the modern era you need a online business to grow and earn more profit. 
                               </Typography>
-                              <Button variant="contained" sx={{ fontWeight: 700, mt: 2, bgcolor: '#111430', fontFamily: 'Macondo, cursive', letterSpacing: '2px' }} className="hireBtn">Hire us</Button>
+                              <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                                   <Button variant="contained" sx={{ fontWeight: 700, mt: 2, bgcolor: '#111430', fontFamily: 'Macondo, cursive', letterSpacing: '2px' }}>
+                                        Hire us
+                                   </Button>
+                              </Link>
                          </div>
                     </Grid>
                     

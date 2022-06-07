@@ -2,6 +2,7 @@ import { Backdrop, Button, Card, Fade, Grid, IconButton, Modal, TextField, Toolt
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 
 const style = {
@@ -35,7 +36,7 @@ const ManageProjects = () => {
                .then(data => setProjects(data));
      }, []);
 
-     const disable = projects.length > 11;
+     const disable = projects.length > 5;
 
      const handleDelete = id => {
           Swal.fire({
@@ -104,11 +105,11 @@ const ManageProjects = () => {
                     {
                          projects.map(({ _id, image }) => <Grid item xs={12} sm={6} md={4} key={_id}>
                               <img src={image} alt="thumbnail" className="thumbnail" draggable="false" style={{ cursor: 'auto', padding: '0 0' }} />
-                              {/* <Box sx={{ display: 'flex', alignItems: 'center', pl: 2 }}>
+                              <Box sx={{ display: 'flex', alignItems: 'center', pl: 2 }}>
                                    <IconButton aria-label="Delete" disabled={!disable} onClick={() => handleDelete(_id)}>
                                         <DeleteIcon sx={{ color: disable === true ? 'red' : '#aaa', fontSize: 28 }} />
                                    </IconButton>
-                              </Box> */}
+                              </Box>
                          </Grid>)
                     }
                     <Grid item xs={12} sm={6} md={4}>

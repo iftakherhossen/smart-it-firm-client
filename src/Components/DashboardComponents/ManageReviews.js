@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -53,7 +53,7 @@ const ManageReviews = () => {
           <div>
                <Grid container spacing={{ xs: 3, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ p: 2 }}>
                     {
-                         reviews.map(({ _id, name, designation, review, ratings, userImg, hidden }) => <Grid item xs={12} key={_id}>
+                         reviews.map(({ _id, name, designation, feedback, ratings, userImg, hidden }) => <Grid item xs={12} key={_id}>
                               <Card sx={{ maxWidth: '100%', bgcolor: '#eee', borderRadius: 3 }}>
                                    <CardHeader
                                         avatar={
@@ -68,17 +68,19 @@ const ManageReviews = () => {
                                         subheader={<Typography variant="body2" style={{ fontFamily: 'Macondo, cursive', fontWeight: 'bold', mt: 0 }}>{designation}</Typography>}
                                    />
                                    <CardContent sx={{ px: 4 }}>
-                                        <Typography sx={{ fontSize: 19, fontFamily: 'Macondo, cursive', fontWeight: 'bold' }}>{review}</Typography>
+                                        <Typography sx={{ fontSize: 19, fontFamily: 'Macondo, cursive', fontWeight: 'bold' }}>{feedback}</Typography>
                                         <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
-                                             <ReactStars
-                                                  count={5}
-                                                  value={ratings}
-                                                  size={28}
-                                                  color1={'#eee'}
-                                                  color2={'#111430'}
-                                                  edit={false}
-                                                  half={true}
-                                             />
+                                             <Tooltip title={ratings}>
+                                                  <ReactStars
+                                                       count={5}
+                                                       value={ratings}
+                                                       size={28}
+                                                       color1={'#eee'}
+                                                       color2={'#111430'}
+                                                       edit={false}
+                                                       half={true}
+                                                  />
+                                             </Tooltip>
                                         </Box>
                                    </CardContent>
                               </Card>

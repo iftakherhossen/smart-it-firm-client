@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 import useAuth from "../../hooks/useAuth";
 import { HashLink } from 'react-router-hash-link';
 import Contact from "./Contact";
+import Profile from "./Profile";
+
 const ResponsiveAppBar = () => {
-     const { user } = useAuth();
+     const { user, logOut } = useAuth();
      const [anchorElNav, setAnchorElNav] = React.useState(null);
      const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -27,8 +29,12 @@ const ResponsiveAppBar = () => {
      };
 
      const [openContact, setOpenContact] = React.useState(false);
+     const [openProfileModal, setOpenProfileModal] = React.useState(false);
+
      const handleContactModalOpen = () => setOpenContact(true);
      const handleContactModalClose = () => setOpenContact(false);
+     const handleOpenProfile = () => setOpenProfileModal(true);
+     const handleCloseProfile = () => setOpenProfileModal(false);   
 
      return (
           <AppBar position="fixed" sx={{ bgcolor: '#FBD062', boxShadow: 0 }}>
@@ -150,7 +156,7 @@ const ResponsiveAppBar = () => {
                                    user.email ? <Box sx={{ flexGrow: 0 }}>
                                         <Tooltip title="Open settings">
                                              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                                  <Avatar alt="Remy Sharp" src={user.photoURL} sx={{ width: 45, height: 45 }} />
+                                                  <Avatar alt={user.displayName} src={user.photoURL} sx={{ width: 45, height: 45 }} />
                                              </IconButton>
                                         </Tooltip>
                                         <Menu
@@ -169,6 +175,11 @@ const ResponsiveAppBar = () => {
                                              open={Boolean(anchorElUser)}
                                              onClose={handleCloseUserMenu}
                                         >
+                                             <MenuItem onClick={handleOpenProfile}>
+                                                  <Typography sx={{ color: "black", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 16 }}>
+                                                       Profile
+                                                  </Typography> 
+                                             </MenuItem>
                                              <MenuItem>
                                                   <Link to="/dashboard" style={{ color: 'black', textDecoration: 'none' }}>
                                                        <Typography sx={{ color: "black", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 16 }}>
@@ -176,7 +187,7 @@ const ResponsiveAppBar = () => {
                                                        </Typography>
                                                   </Link> 
                                              </MenuItem>
-                                             <MenuItem>
+                                             <MenuItem onClick={logOut}>
                                                   <Typography sx={{ color: "black", fontFamily: "Macondo, cursive", fontWeight: 700, fontSize: 16 }}>
                                                        Log Out
                                                   </Typography>
@@ -198,6 +209,10 @@ const ResponsiveAppBar = () => {
                <Contact
                     open={openContact}
                     handleClose={handleContactModalClose}
+               />
+               <Profile 
+                    openProfileModal={openProfileModal}
+                    handleCloseProfile={handleCloseProfile}
                />
           </AppBar>          
      );
