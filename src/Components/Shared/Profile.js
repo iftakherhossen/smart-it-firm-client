@@ -1,7 +1,9 @@
-import * as React from 'react';
-import { Backdrop, Box, Modal, Fade, Typography } from '@mui/material';
-import useAuth from '../../hooks/useAuth';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import PersonIcon from '@mui/icons-material/Person';
+import { Backdrop, Box, Fade, IconButton, Modal, TextField, Tooltip, Typography } from '@mui/material';
+import * as React from 'react';
+import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const style = {
     position: 'absolute',
@@ -15,12 +17,14 @@ const style = {
     borderRadius: 4,
 };
 
-const Profile = ({ openProfileModal, handleCloseProfile }) => {
+const Profile = ({ openProfileModal, handleCloseProfile, handleOpenProfile }) => {
      const  { user } = useAuth(); 
      const [userDetails, setUserDetails] = React.useState([]);
+     const [designation, setDesignation] = React.useState('');
+     const [success, setSuccess] = React.useState(false);
 
      React.useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/users/')
+          fetch('https://smart-it-firm-server.herokuapp.com/users/')
                .then(res => res.json())
                .then(data => setUserDetails(data));
      }, [])
@@ -30,7 +34,46 @@ const Profile = ({ openProfileModal, handleCloseProfile }) => {
      });    
 
      const findByEmail = findUser(user.email);
-     const designation = findByEmail?.designation;
+
+     const handleAddDesignation = id => {
+          handleCloseProfile();
+          Swal.fire({
+               title: 'Are you sure?',
+               text: "You can't change it later!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes, Update it!'
+          }).then((result) => {
+               if (result.isConfirmed) {
+                    fetch(`https://smart-it-firm-server.herokuapp.com/users/${id}`, {
+                         method: 'PUT',
+                         mode: 'opaque',
+                         headers: {
+                              'content-type': 'application/json'
+                         },
+                         body: JSON.stringify(designation)
+                    })
+                         .then(res => res.json())
+                         .then(data => {
+                              if (data.modifiedCount) {
+                                   setSuccess(true);
+                              }
+                         });
+                    
+                    success && Swal.fire(
+                         'Done!',
+                         'This review is now public!',
+                         'success'
+                    )
+               }
+               else {
+                    handleOpenProfile();
+               }               
+          });
+          
+     };
 
      return (
           <div>
@@ -62,9 +105,24 @@ const Profile = ({ openProfileModal, handleCloseProfile }) => {
                                         <Typography id="transition-modal-title" variant="h5" component="h3" sx={{ fontFamily: 'Macondo, cursive', fontWeight: 'bold', textAlign: 'left' }}>
                                              {user.displayName}
                                         </Typography>
-                                        <Typography id="transition-modal-title" variant="h6" component="h4" sx={{ fontFamily: 'Macondo, cursive', fontWeight: 'bold', textAlign: 'left', textTransform: 'capitalize', display: 'flex', alignItems: 'center' }}>
-                                             <PersonIcon sx={{ fontSize: 20, mr: 0.5 }} /> {designation}
-                                        </Typography>
+                                        {
+                                             findByEmail?.designation ? <Typography id="transition-modal-title" variant="h6" sx={{ fontFamily: 'Macondo, cursive', fontWeight: 'bold', fontSize: 18, textAlign: 'left', textTransform: 'capitalize', display: 'flex', alignItems: 'center' }}>
+                                                  <PersonIcon sx={{ fontSize: 20, mr: 0.5 }} /> {findByEmail?.designation}
+                                             </Typography> : <Box sx={{ mt: 2 }}>
+                                                  <TextField 
+                                                       placeholder="Designation"
+                                                       variant="standard"
+                                                       size="small"
+                                                       required
+                                                       onBlur={(e) => setDesignation(e.target.value)}
+                                                  />
+                                                  <Tooltip title="Add Your Designation">
+                                                       <IconButton aria-label="edit" onClick={() => handleAddDesignation(findByEmail._id)} className="disabledNav">
+                                                            <DriveFileRenameOutlineIcon sx={{ color: 'black' }} />
+                                                       </IconButton>
+                                                  </Tooltip>
+                                             </Box>
+                                        }
                                    </Box>
                               </Box>
                          </Box>

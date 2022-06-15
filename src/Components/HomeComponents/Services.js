@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
 import { Container, Grid, Typography } from '@mui/material';
-import { Box } from '@mui/system'
+import { Box } from '@mui/system';
+import { useEffect, useState } from 'react';
 import Service from './Service';
 
 const Services = () => {
      const [services, setServices] = useState([]);
      
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/services')
-          .then(res => res.json())
-          .then(data => setServices(data));
+          fetch('https://smart-it-firm-server.herokuapp.com/services')
+               .then(res => res.json())
+               .then(data => setServices(data));
      }, []);
 
 

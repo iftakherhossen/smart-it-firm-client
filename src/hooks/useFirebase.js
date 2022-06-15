@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider, updateProfile } from "firebase/auth";
-import initializeAuthentication from '../Components/Firebase/firebase.init';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import initializeAuthentication from '../Components/Firebase/firebase.init';
 
 // initialize firebase app
 initializeAuthentication();
@@ -129,7 +129,7 @@ const useFirebase = () => {
 
     // for checking admin
     useEffect(() => {
-        fetch(`https://smart-it-firm.herokuapp.com/users/${user.email}`)
+        fetch(`https://smart-it-firm-server.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin));
     }, [user.email]);
@@ -152,8 +152,9 @@ const useFirebase = () => {
     const saveUser = (email, displayName, userImg, method) => {
         const user = { email, displayName, userImg };
 
-        fetch('https://smart-it-firm.herokuapp.com/users', {
+        fetch('https://smart-it-firm-server.herokuapp.com/users', {
             method: "PUT",
+            mode: 'opaque',
             headers: {
                 'content-type': 'application/json'
             },

@@ -1,8 +1,8 @@
-import { Backdrop, Button, Card, Fade, Grid, IconButton, Modal, TextField, Tooltip, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Backdrop, Button, Card, Fade, Grid, IconButton, Modal, TextField, Tooltip, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 const style = {
@@ -31,7 +31,7 @@ const ManageProjects = () => {
      const handleClose = () => setOpen(false);  
 
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/projects')
+          fetch('https://smart-it-firm-server.herokuapp.com/projects')
                .then(res => res.json())
                .then(data => setProjects(data));
      }, []);
@@ -49,10 +49,11 @@ const ManageProjects = () => {
                confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
                if (result.isConfirmed) {
-                    const url = `https://smart-it-firm.herokuapp.com/projects/${id}`;
+                    const url = `https://smart-it-firm-server.herokuapp.com/projects/${id}`;
 
                     fetch(url, {
-                         method: 'DELETE'
+                         method: 'DELETE',
+                         mode: 'opaque'
                     })
                          .then(res => res.json())
                          .then(data => {
@@ -79,8 +80,14 @@ const ManageProjects = () => {
           formData.append('title', projectTitle);
           formData.append('image', projectImage);
 
-          fetch('https://smart-it-firm.herokuapp.com/projects', {
+          fetch('https://smart-it-firm-server.herokuapp.com/projects', {
                method: 'POST',
+               mode: 'opaque',
+               headers: {
+                    'content-type': 'application/json',
+                    'host': 'smart-it-firm-server.herokuapp.com',
+                    'Access-Control-Allow-Origin': 'http://localhost:3000/'
+               },
                body: formData
           })
                .then(res => res.json())

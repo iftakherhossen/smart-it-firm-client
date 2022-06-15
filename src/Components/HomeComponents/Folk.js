@@ -1,13 +1,13 @@
+import { useEffect, useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import React, { useEffect, useState } from 'react';
 
 const Folk = () => {
      const [team, setTeam] = useState([]);
      const handleDragStart = (e) => e.preventDefault();     
 
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/team')
+          fetch('https://smart-it-firm-server.herokuapp.com/team')
                .then(res => res.json())
                .then(data => setTeam(data));
      }, []);

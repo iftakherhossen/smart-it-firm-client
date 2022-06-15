@@ -1,8 +1,8 @@
-import { Card, CardContent, CardMedia, Grid, IconButton, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Card, CardContent, CardMedia, Grid, IconButton, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 
 const Service = ({ service, msdFont }) => {
@@ -20,10 +20,12 @@ const Service = ({ service, msdFont }) => {
                confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
                if (result.isConfirmed) {
-                    fetch(`https://smart-it-firm.herokuapp.com/services/${id}`, {
+                    fetch(`/services/${id}`, {
                          method: 'PUT',
+                         mode: 'opaque',
                          headers: {
-                              'content-type': 'application/json'
+                              'content-type': 'application/json',
+                    'Allow-Control-Allow-Origin': '*',
                          },
                          body: JSON.stringify()
                     })

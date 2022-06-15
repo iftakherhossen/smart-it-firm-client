@@ -1,9 +1,9 @@
-import { Backdrop, Box, Button, Card, Fade, Grid, IconButton, Input, Modal, TextField, Tooltip, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import Service from '../HomeComponents/Service';
 import AddIcon from '@mui/icons-material/Add';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { Backdrop, Box, Button, Card, Fade, Grid, IconButton, Input, Modal, TextField, Tooltip, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import Service from '../HomeComponents/Service';
 
 const style = {
      position: 'absolute',
@@ -34,7 +34,7 @@ const ManageServices = () => {
      const handleClose = () => setOpen(false);     
      
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/services')
+          fetch('https://smart-it-firm-server.herokuapp.com/services')
                .then(res => res.json())
                .then(data => setServices(data));
      }, []);
@@ -53,9 +53,13 @@ const ManageServices = () => {
           formData.append('borderColor', colorCode);
           formData.append('image', image);
 
-          fetch('https://smart-it-firm.herokuapp.com/services', {
-            method: 'POST',
-            body: formData
+          fetch('https://smart-it-firm-server.herokuapp.com/services', {
+               method: 'POST',
+               mode: 'opaque',
+               headers: {
+                    'content-type': 'application/json'
+               },
+               body: formData
           })
                .then(res => res.json())
                .then(data => {

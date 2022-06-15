@@ -1,7 +1,7 @@
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Divider, Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 const ManageTeam = () => {
@@ -10,13 +10,13 @@ const ManageTeam = () => {
      const [deleteSuccess, setDeleteSuccess] = useState(false);
 
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/team')
+          fetch('https://smart-it-firm-server.herokuapp.com/team')
                .then(res => res.json())
                .then(data => setTeam(data));
      }, []);
 
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/users')
+          fetch('https://smart-it-firm-server.herokuapp.com/users')
                .then(res => res.json())
                .then(data => setAdmins(data));
      }, []);
@@ -35,10 +35,11 @@ const ManageTeam = () => {
                confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
                if (result.isConfirmed) {
-                    const url = `https://smart-it-firm.herokuapp.com/team/${id}`;
+                    const url = `https://smart-it-firm-server.herokuapp.com/team/${id}`;
 
                     fetch(url, {
-                         method: 'DELETE'
+                         method: 'DELETE',
+                         mode: 'opaque'
                     })
                          .then(res => res.json())
                          .then(data => {

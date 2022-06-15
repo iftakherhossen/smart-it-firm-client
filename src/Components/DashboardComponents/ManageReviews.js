@@ -1,7 +1,7 @@
-import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import ReactStars from 'react-stars';
 import Swal from 'sweetalert2';
 
@@ -10,7 +10,7 @@ const ManageReviews = () => {
      const [success, setSuccess] = useState(false);
 
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/reviews')
+          fetch('https://smart-it-firm-server.herokuapp.com/reviews')
                .then(res => res.json())
                .then(data => setReviews(data));
      }, []);
@@ -26,8 +26,9 @@ const ManageReviews = () => {
                confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
                if (result.isConfirmed) {
-                    fetch(`https://smart-it-firm.herokuapp.com/reviews/${id}`, {
+                    fetch(`https://smart-it-firm-server.herokuapp.com/reviews/${id}`, {
                          method: 'PUT',
+                         mode: 'opaque',
                          headers: {
                               'content-type': 'application/json'
                          },

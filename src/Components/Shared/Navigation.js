@@ -212,6 +212,7 @@ const ResponsiveAppBar = () => {
                />
                <Profile 
                     openProfileModal={openProfileModal}
+                    handleOpenProfile={handleOpenProfile}
                     handleCloseProfile={handleCloseProfile}
                />
           </AppBar>          

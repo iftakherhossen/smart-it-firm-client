@@ -1,9 +1,9 @@
 import { Button, Modal, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-import useAuth from '../../hooks/useAuth';
-import Swal from 'sweetalert2';
+import { useEffect, useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
+import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const reviewModalStyle = {
      position: 'absolute',
@@ -26,7 +26,7 @@ const ReviewModal = ({ openReviewModal, handleReviewModalClose }) => {
      const { user, isLoading } = useAuth();
 
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/users/')
+          fetch('https://smart-it-firm-server.herokuapp.com/users/')
                .then(res => res.json())
                .then(data => setUserDetails(data));
      }, [])
@@ -59,11 +59,11 @@ const ReviewModal = ({ openReviewModal, handleReviewModalClose }) => {
                ...reviewData,
                ratings
           }
-          console.log(post);
           
           // send data to the server
-          fetch('https://smart-it-firm.herokuapp.com/reviews', {
+          fetch('https://smart-it-firm-server.herokuapp.com/reviews', {
                method: 'POST',
+               mode: 'opaque',
                headers: {
                     'content-type': 'application/json'
                },

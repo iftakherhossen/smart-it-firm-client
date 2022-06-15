@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
-import { Box } from '@mui/system'
-import Review from './Review';
+import { Box } from '@mui/system';
+import { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
+import Review from './Review';
 
 const breakPoints = [
      { width: 1, itemsToShow: 1,  },
@@ -15,9 +15,9 @@ const Reviews = () => {
      const [reviews, setReviews] = useState([]);
      
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/reviews')
-          .then(res => res.json())
-          .then(data => setReviews(data));
+          fetch('https://smart-it-firm-server.herokuapp.com/reviews')
+               .then(res => res.json())
+               .then(data => setReviews(data));
      }, []);
 
 

@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import SingleService from './SingleService';
 
@@ -9,7 +9,7 @@ const BookedServices = () => {
      const [bookings, setBookings] = useState([]);
 
      useEffect(() => {
-          fetch(`https://smart-it-firm.herokuapp.com/orders/${user.email}`)
+          fetch(`https://smart-it-firm-server.herokuapp.com/orders/${user.email}`)
                .then(res => res.json())
                .then(data => setBookings(data));
      }, [user.email]);

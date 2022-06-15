@@ -1,8 +1,8 @@
 import { Button, FormControl, Input, InputLabel, MenuItem, Modal, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-import useAuth from '../../hooks/useAuth';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const reviewModalStyle = {
      position: 'absolute',
@@ -30,7 +30,7 @@ const HireUsModal = ({ openHireUsModal, handleHireUsModalClose }) => {
      const [borderColor, setBorderColor] = useState('');
 
      useEffect(() => {
-          fetch('https://smart-it-firm.herokuapp.com/services')
+          fetch('https://smart-it-firm-server.herokuapp.com/services')
                .then(res => res.json())
                .then(data => setServices(data));
      }, []);
@@ -58,8 +58,9 @@ const HireUsModal = ({ openHireUsModal, handleHireUsModalClose }) => {
           console.log(post);
           
           // send data to the server
-          fetch('https://smart-it-firm.herokuapp.com/orders', {
+          fetch('https://smart-it-firm-server.herokuapp.com/orders', {
                method: 'POST',
+               mode: 'opaque',
                headers: {
                     'content-type': 'application/json'
                },

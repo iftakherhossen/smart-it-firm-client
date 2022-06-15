@@ -1,5 +1,5 @@
 import { Tooltip } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 
@@ -8,7 +8,7 @@ const Project = () => {
     const handleDragStart = (e) => e.preventDefault();
 
     useEffect(() => {
-        fetch('https://smart-it-firm.herokuapp.com/projects')
+        fetch('https://smart-it-firm-server.herokuapp.com/projects')
             .then(res => res.json())
             .then(data => setProjects(data));
     }, []);

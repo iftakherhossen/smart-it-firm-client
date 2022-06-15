@@ -1,16 +1,15 @@
-import { Grid, } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Grid } from '@mui/material';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import SingleOrder from './SingleOrder';
-import SingleService from './SingleService';
 
 const ManageOrders = () => {
      const { user } = useAuth();
      const [bookings, setBookings] = useState([]);
 
      useEffect(() => {
-          fetch(`https://smart-it-firm.herokuapp.com/orders`)
+          fetch(`/orders`)
                .then(res => res.json())
                .then(data => setBookings(data));
      }, [user.email]);
@@ -30,10 +29,12 @@ const ManageOrders = () => {
                confirmButtonText: 'Accept!'
           }).then((result) => {
                if (result.isConfirmed) {
-                    fetch(`https://smart-it-firm.herokuapp.com/orders/${id}`, {
+                    fetch(`https://smart-it-firm-server.herokuapp.com/orders/${id}`, {
                          method: 'PUT',
+                         mode: 'opaque',
                          headers: {
-                              'content-type': 'application/json'
+                              'content-type': 'application/json',
+                    'Allow-Control-Allow-Origin': '*',
                          },
                          body: JSON.stringify()
                     })
@@ -64,10 +65,12 @@ const ManageOrders = () => {
                confirmButtonText: 'Yes I received it!'
           }).then((result) => {
                if (result.isConfirmed) {
-                    fetch(`https://smart-it-firm.herokuapp.com/orders/paymentStatus/${id}`, {
+                    fetch(`https://smart-it-firm-server.herokuapp.com/orders/paymentStatus/${id}`, {
                          method: 'PUT',
+                         mode: 'opaque',
                          headers: {
-                              'content-type': 'application/json'
+                              'content-type': 'application/json',
+                    'Allow-Control-Allow-Origin': '*',
                          },
                          body: JSON.stringify()
                     })
@@ -98,10 +101,11 @@ const ManageOrders = () => {
                confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
                if (result.isConfirmed) {
-                    const url = `https://smart-it-firm.herokuapp.com/orders/${id}`;
+                    const url = `https://smart-it-firm-server.herokuapp.com/orders/${id}`;
 
                     fetch(url, {
-                         method: 'DELETE'
+                         method: 'DELETE',
+                         mode: 'opaque'
                     })
                          .then(res => res.json())
                          .then(data => {
